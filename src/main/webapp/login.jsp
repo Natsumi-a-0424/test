@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="/kadai/style.css">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	
-	<title>Login</title>
+	<title>LOGIN</title>
 </head>
 <body>
 
