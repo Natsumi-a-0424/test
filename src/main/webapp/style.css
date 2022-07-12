@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+body{
+	background-color:#fffeee;
+	
+	font-family: "游ゴシック","Yu Gothic",YuGothic,sans-serif;
+
+}
+
+h1 {
+    font-size: 120%;
+    
+    text-align:  center;	
+}
+}
+
+button{
+	font-family: "游ゴシック","Yu Gothic",YuGothic,sans-serif;
+	
+	
+
+}
+
+label{
+	text-align:  center;	
+	
+	
+}
+
+form{
+	line-height:2;
+	
+	text-align:  center;	
+}
+
+p{
+	text-align:  center;
+}
+
+div{
+	text-align:  center;	
+}
+
+
+
+/*login・logoutボタン*/
+ button[class~="logButton"]{
+	background: #eee;
+	border-radius: 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 260px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+}
+
+button[class~="logButton"]:hover {
+    background: #313131;
+    color: #FFF;
+}
+
+button[class~="logButton"]:after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #313131;
+    border-right: 3px solid #313131;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    border-radius: 1px;
+    transition: 0.3s ease-in-out;
+}
+button[class~="logButton"]:hover:after {
+    border-color: #FFF;
+}
+
+/*top画面のボタン*/
+button[class~="topButton"] {
+    background: #eee;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 270px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+}
+button[class~="topButton"]:before {
+    content: '';
+    position: absolute;
+    top: calc(50% - 2px);
+    right: -2em;
+    transform: translateY(calc(-50% - 2px)) rotate(30deg);
+    width: 12px;
+    height: 2px;
+    background-color: #6bb6ff;
+    transition: 0.3s;
+}
+button[class~="topButton"]:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -2em;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: #6bb6ff;
+    transition: 0.3s;
+}
+button[class~="topButton"]:hover:before, .button006 a:hover:after {
+    right: -2.5em;
+}
+button[class~="topButton"]:hover {
+    background: #edf6ff;
+    color: #6bb6ff;
+}
+
+/*アニメーション要素のスタイル*/
+.animation{
+	opacity : 0;
+	visibility: hidden;
+	transition: 1s;
+	transform: translateY(30px);
+}
+/*アニメーション要素までスクロールした時のスタイル*/
+.active{
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
