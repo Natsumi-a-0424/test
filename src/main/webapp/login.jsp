@@ -7,9 +7,8 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/kadai/style.css">
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	
-	<title>LOGIN</title>
+	<title>Login</title>
 </head>
 <body>
 
@@ -45,25 +44,7 @@
 		 
 	 </form>
 
-	<script type="text">
-	$(function(){
-		$(window).on('load scroll',function (){
-			$('.animation').each(function(){
-				//ターゲットの位置を取得
-				var target = $(this).offset().top;
-				//スクロール量を取得
-				var scroll = $(window).scrollTop();
-				//ウィンドウの高さを取得
-				var height = $(window).height();
-				//ターゲットまでスクロールするとフェードインする
-				if (scroll > target - height){
-					//クラスを付与
-					$(this).addClass('active');
-				}
-			});
-		});
-	});
-	</script>
+
 	
 	
 </body>
