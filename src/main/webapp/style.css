@@ -125,16 +125,3 @@ button[class~="topButton"]:hover {
     color: #6bb6ff;
 }
 
-/*アニメーション要素のスタイル*/
-.animation{
-	opacity : 0;
-	visibility: hidden;
-	transition: 1s;
-	transform: translateY(30px);
-}
-/*アニメーション要素までスクロールした時のスタイル*/
-.active{
-	opacity: 1;
-	visibility: visible;
-	transform: translateY(0);
-}
