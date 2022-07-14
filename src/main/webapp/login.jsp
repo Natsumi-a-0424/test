@@ -7,7 +7,10 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/kadai/style.css">
-	
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+	<script type="text/javascript" charset="UTF-8" src="/kadai/login.js"></script>
 	<title>Login</title>
 </head>
 <body>
@@ -19,8 +22,10 @@
 		 
 		 <p>
 			 <label for="ID">ID:</label><!-- テキストボックスにID:のラベル付け -->
-			 <input type="text" name="ID" id="ID"><!-- 名前IDのテキストボックス作成 -->
+			 <input type="text" name="ID" id="ID" value=""><!-- 名前IDのテキストボックス作成 -->
+			 
 		 </p>
+		 <span class="result_text"></span>
 		 
 		 <p>
 			 <label for="pw">pw:</label><!-- テキストボックスにpw:のラベル付け -->
