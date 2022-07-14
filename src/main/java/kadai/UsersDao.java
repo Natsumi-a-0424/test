@@ -122,6 +122,55 @@ import java.util.List;
 					e.printStackTrace();
 					throw new DAOException("リソースの開放に失敗しました");
 				}
-		}
+			}
+		}		
+		
+		//int型変数input_idを使ってUsersBean型findメソッドを実行、例外はExceptionに投げる
+		//int型の結果を返す
+		public int find1(String input_id) throws Exception {
+			if (con == null) {//Connectionがnullのとき
+				try {
+					setConnection();
+				} catch (Exception e) {
+					// TODO 自動生成された catch ブロック
+					e.printStackTrace();//例外発生までに実行したメソッドの時系列一覧表示
+				}
+			}
+			PreparedStatement st = null;//sql文をデータベースに送るためPreperedStatment型変数stを宣言
+			ResultSet rs = null;//データベースからの実行結果を格納するためのresultSet型変数rsの宣言
+			try {
+				/*usersテーブルのidが入力された値(user_id)に一致する行のid,name,passwordを検索*/
+				String sql = "SELECT id FROM users where id =  ?;";
+
+			/** PreparedStatement オブジェクトの取得**/
+				st = con.prepareStatement(sql);//sql文をデータベースに送る
+				st.setString(1, input_id);//パラメータのインデックス1、パラメータがinput_id
+				rs = st.executeQuery();//stが取得してきた実行結果を格納
+				int count = 0;
+				while(rs.next()){
+					int id = rs.getInt("id");
+					count++;//一致する行数をカウント
+					}
+				
+			return count;//一致する行数を返す
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました");
+			} finally {//例外が発生してもしなくても
+				try {
+					if (rs != null){
+							rs.close();
+					}				
+					if (st != null) {
+							st.close();
+					}
+					close();
+				} catch (Exception e) {
+					e.printStackTrace();
+					throw new DAOException("リソースの開放に失敗しました");
+				}
+			
+			}	
+			
 	}
 }
