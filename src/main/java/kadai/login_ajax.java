@@ -39,13 +39,13 @@ public class login_ajax extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String id = null;
-		id = request.getParameter("ID");//login.jspで入力された値をjsファイルを通して取得
+		id = request.getParameter("ID");//login.jspでパラメータをjsファイルを通して取得
 		
-		System.out.println(id);
+		System.out.println(id);//取得したパラメータをコンソールに出力して確認
 		
 		UsersDao dao = null;
 		try {
-			dao = new UsersDao();	
+			dao = new UsersDao();//UsersDaoオブジェクトをインスタンス化
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -53,6 +53,8 @@ public class login_ajax extends HttpServlet {
 		
 		int num = 0;
 		try {
+			//find1にString型のidを渡す
+			//
 			num = Integer.valueOf(dao.find1(id));
 			
 			System.out.println(num);

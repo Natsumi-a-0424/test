@@ -139,7 +139,7 @@ import java.util.List;
 			PreparedStatement st = null;//sql文をデータベースに送るためPreperedStatment型変数stを宣言
 			ResultSet rs = null;//データベースからの実行結果を格納するためのresultSet型変数rsの宣言
 			try {
-				/*usersテーブルのidが入力された値(user_id)に一致する行のid,name,passwordを検索*/
+				/*usersテーブルのidが入力された値(user_id)に一致する行を検索*/
 				String sql = "SELECT id FROM users where id =  ?;";
 
 			/** PreparedStatement オブジェクトの取得**/
