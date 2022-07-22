@@ -5,9 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/kadai/style.css">
+<jsp:include page="header.jsp"/>
 <title>Insert title here</title>
 </head>
 <body>
+
+<h1>― 新規登録 ―</h1>
 
 	<form action="./top.jsp" style="display: inline">
 		 <button>top</button>

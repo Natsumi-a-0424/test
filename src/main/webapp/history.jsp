@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/kadai/style.css">
+<jsp:include page="header.jsp"/>
 <title>Insert title here</title>
 </head>
 <body>
@@ -13,6 +14,8 @@
 <%@ page import="kadai.HistoryBean"%>
 
 <%ArrayList<HistoryBean> hisList = (ArrayList<HistoryBean>)request.getAttribute("hisList"); %>
+
+	<h1>― 採点結果　履歴 ―</h1>
 
 	<form action="./logout.jsp" method="POST" style="display: inline">
 		 <button>logout</button>

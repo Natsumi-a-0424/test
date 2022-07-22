@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/kadai/style.css">
-<title>Insert title here</title>
+<jsp:include page="header.jsp"/>
+<title>Delete</title>
 </head>
 <body>
 <%@ page import="java.util.ArrayList"%>
@@ -13,6 +14,8 @@
 <%@ page import="kadai.QuestionsBean"%>
 <%@ page import="kadai.AnswersBean"%>
 <%@ page import="kadai.delete_confirm" %>
+
+	<h1>― 削除 ―</h1>
 
 	<form action="./top.jsp" style="display: inline">
 		 <button>top</button>

@@ -12,24 +12,28 @@
 	crossorigin="anonymous"></script>
 	<script type="text/javascript" charset="UTF-8" src="/kadai/login.js"></script>
 	<title>Login</title>
+	<jsp:include page="header.jsp"/>
+
 </head>
+
+
 <body>
 
 	<h1>Login</h1>
 	
 	
-	 <form action="./Login" method="POST"><!--送信ボタンをした時の送り先をLogin.java、転送方法をPOSTメソッドに指定 -->
+	 <form class="loginForm" action="./Login" method="POST"><!--送信ボタンをした時の送り先をLogin.java、転送方法をPOSTメソッドに指定 -->
 		 
-		 <p>
+		 <p class="loginP">
 			 <label for="ID">ID:</label><!-- テキストボックスにID:のラベル付け -->
-			 <input type="text" name="ID" id="ID" value=""><!-- 名前IDのテキストボックス作成 -->
+			 <input type="text" name="ID" id="ID" value="" class="loginTextBox"><!-- 名前IDのテキストボックス作成 -->
 			 
 		 </p>
-		 <span class="result_text"></span>
+		 <span class="result_text" style="text-align:  center; font-size:90%; line-height:0%"></span>
 		 
-		 <p>
+		 <p class="loginP">
 			 <label for="pw">pw:</label><!-- テキストボックスにpw:のラベル付け -->
-			 <input type="text" name="PW" id="pw"><!-- 名前PWのテキストボックス作成 -->
+			 <input type="text" name="PW" id="pw" class="loginTextBox"><!-- 名前PWのテキストボックス作成 -->
 		 </p>
 		 
 			 <%
@@ -45,12 +49,12 @@
 			}
 			%>
 		 
-		 <button class="logButton" type="submit" style="margin-top:3%" >login</button><!-- submitで値を保持したまま送信 -->
+		 <button class="loginButton" type="submit" style="margin-top:3%" >login</button><!-- submitで値を保持したまま送信 -->
 		 
 	 </form>
 
 
 	
-	
+	<script src="header.js"></script>
 </body>
 </html>

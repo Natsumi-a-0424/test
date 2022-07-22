@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/kadai/style.css">
+<jsp:include page="header.jsp"/>
 <title>Insert title here</title>
 </head>
 <body>
@@ -12,6 +13,8 @@
 <%@ page import="java.util.List"%>
 <%@ page import="kadai.QuestionsBean"%>
 <%@ page import="kadai.AnswersBean"%>
+
+	<h1>― テスト ―</h1>
 
 	<form action="./top.jsp" style="display: inline"><!-- フォームの遷移先の指定と改行を消去 -->
 		<button>top</button><!-- topボタンの作成 -->
