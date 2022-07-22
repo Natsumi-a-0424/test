@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/kadai/style.css">
+<jsp:include page="header.jsp"/>
 <title>Insert title here</title>
 </head>
 <body>
@@ -14,7 +15,7 @@
 	<%int score = (int)request.getAttribute("score"); %>
 	<%String time = (String)request.getAttribute("scoring_time"); %>
 	
-	
+	<h1>― テスト採点結果 ―</h1>
 	
 	<form action="./top.jsp" style="display: inline"><!-- フォームの遷移先の指定と改行を消去 -->
 		<button type="submit">top</button><!-- topボタンの作成 -->

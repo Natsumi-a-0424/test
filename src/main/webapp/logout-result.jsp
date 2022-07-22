@@ -5,9 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/kadai/style.css">
+<jsp:include page="header.jsp"/>
 <title>Insert title here</title>
 </head>
 <body>
+
+<h1>― Logout ―</h1>
 
 <P>ログアウトしました</P>
 

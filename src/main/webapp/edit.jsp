@@ -5,13 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/kadai/style.css">
-<title>Insert title here</title>
+<jsp:include page="header.jsp"/>
+<title>Edit</title>
 </head>
 <body>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 <%@ page import="kadai.QuestionsBean"%>
 <%@ page import="kadai.AnswersBean"%>
+
+	<h1>― 編集 ―</h1>
 
 	<div>
 	<form action="./top.jsp" style="display: inline"><!-- top画面に遷移 -->

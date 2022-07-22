@@ -5,9 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/kadai/style.css">
-<title>Insert title here</title>
+<jsp:include page="header.jsp"/>
+<title>Edit</title>
 </head>
 <body>
+
+	<h1>― 編集 ―</h1>
 	 <form action="./edit_execution" method="POST" style="display: inline">
 		<!-- リクエストスコープからデータを取得 -->
 		<% 	String edit_id= (String)request.getAttribute("edit_id");%>

@@ -5,9 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/kadai/style.css">
-<title>Insert title here</title>
+<jsp:include page="header.jsp"/>
+<title>Delete</title>
 </head>
 <body>
+
+	<h1>― 削除 ―</h1>
 データを削除しました。
 
 	<form action="./list" method="POST">

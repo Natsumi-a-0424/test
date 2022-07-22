@@ -5,6 +5,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/kadai/style.css">
+<jsp:include page="header.jsp"/>
 <meta charset="UTF-8">
 <title>List</title>
 </head>
@@ -14,26 +15,26 @@
 <%@ page import="kadai.QuestionsBean"%>
 <%@ page import="kadai.AnswersBean"%>
 
-	<h1>List</h1>
+	<h1>― 問題一覧 ―</h1>
 
 	<div>
-	<form action="./top.jsp" style="display: inline"><!-- フォームの遷移先の指定と改行を消去 -->
-		<button>top</button><!-- topボタンの作成 -->
+	<form action="./top.jsp"><!-- フォームの遷移先の指定と改行を消去 -->
+		<button class="topButton">top</button><!-- topボタンの作成 -->
 	</form>
 	
-	<form action=""	 method="POST" style="display: inline"><!-- フォームの遷移先とメソッドの指定、改行の消去 -->
-		<button type=submit>logout</button><!-- 内容保持したまま送信するsubmit指定、logoutのボタン作成 -->
+	<form action=""	 method="POST"><!-- フォームの遷移先とメソッドの指定、改行の消去 -->
+		<button class="logoutButton" type=submit>logout</button><!-- 内容保持したまま送信するsubmit指定、logoutのボタン作成 -->
 	</form>
 	</div>
 	
-	<div>
+	<div class="registerButton">
 		<form action="./register.jsp" method="POST">	<!-- フォームの遷移先とメソッドの指定、改行の消去 -->
-			<button>新規登録</button><!-- 新規登録ボタンの作成 -->
+			<button class="edit-deleteButton">新規登録</button><!-- 新規登録ボタンの作成 -->
 		</form>
-	<div>
+	</div>
 	
 		
-	<div>
+	<div class="listText">
 	<form action="./list" method="POST" style="display: inline"><!-- フォームの遷移先とメソッドの指定 -->
 	    
 	    <!-- 配列ArrayListのQuestionsBean型変数queListの宣言、ArrayListのQuestionsBean型でlist.javaからのqueListを取得し格納 -->
@@ -44,26 +45,26 @@
 	
 		
 		for(QuestionsBean queData : queList){ %><!-- 配列queListから要素取り出しQuestionsBean型変数queDataに格納、配列の分だけ繰返し -->
-		
+		<p>
 			<label for="question">
-			問題<input type="text" name="id" value ="<%=queData.getId()%>" style="width:2%" readonly> :<!-- テキストボックスにqueListから取得したidを表示 -->
-				<input type="text" name="question" id="question" value ="<%=queData.getQuestion()%>" readonly>	<!-- 同様に取得したQuestionを表示 -->
+			問題 <input type="text" name="id" value ="<%=queData.getId()%>" class="QidTextBox"  readonly> :<!-- テキストボックスにqueListから取得したidを表示 -->
+				<input type="text" name="question" id="question" value ="<%=queData.getQuestion()%>" class="QTextBox" readonly><!-- 同様に取得したQuestionを表示 -->
 				
 			</label>
 
 	</form>
 			
-			<form action="./edit" method="POST" style="display: inline"><!-- 遷移先と送信メソッドの指定、改行の消去 -->
+			<form action="./edit" method="POST"  style="display: inline"><!-- 遷移先と送信メソッドの指定、改行の消去 -->
 			<!-- name="id"のテキストボックスが配列から取得したidを保持した状態で編集画面に遷移 -->
 			<input type="hidden" name="ID" value ="<%=queData.getId()%>" >
-		 	<button type="submit">編集</button><!-- 編集ボタンの作成 -->
+		 	<button type="submit" class="edit-deleteButton">編集</button><!-- 編集ボタンの作成 -->
 			</form>
 			
 			<!-- 問題番号を削除画面サーブレット(delete_confirm.java)に渡す -->
 			<form action="./delete_confirm" method="POST" style="display: inline"><!-- 遷移先と送信メソッドの指定、改行の消去 -->
 			 <!-- このコードを非表示状態に設定、name=idのテキストボックスが配列から取得したidを保持した状態で削除画面に遷移 -->
 			<input type="hidden" name="ID" value ="<%=queData.getId()%>" >
-			<button type="submit" >削除</button>
+			<button type="submit" class="edit-deleteButton">削除</button>
 			</form>
 			
 			<br>
@@ -74,7 +75,7 @@
 						
 						<label>	
 						答え<%= i++ %>:<!-- 変数iにプラス１した状態で表示 -->
-						<input type="text" name="answer" value ="<%=ansData.getAnswer()%>" readonly><!-- if文がtrueのときansDataが取得したanswerを表示 -->
+						<input type="text" name="answer" value ="<%=ansData.getAnswer()%>" class="ATextBox" readonly><!-- if文がtrueのときansDataが取得したanswerを表示 -->
 						</label>	
 						
 						<br>
@@ -85,8 +86,8 @@
 				
 					
 		<%} %>	
-	</div>				
-
+				
+	</div>
 
 	
 </body>
