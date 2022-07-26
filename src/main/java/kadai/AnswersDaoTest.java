@@ -62,5 +62,7 @@ class AnswersDaoTest {
 		AnswersDao answersDao = new AnswersDao();
 		assertThat(answersDao.find("㍻").getQuestions_id(),is(nullValue()));
 	}*/
+	
+	/**/
 
 }
