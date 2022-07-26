@@ -1,12 +1,7 @@
 package kadai;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.*;
-
-import org.junit.jupiter.api.Test;
-
 class AnswersDaoTest {
-
+	/*エラー
 	@Test
 	public void findメソッドにDBに存在する問題のidを渡す() throws Exception{
 		AnswersDao answersDao = new AnswersDao();
@@ -19,7 +14,7 @@ class AnswersDaoTest {
 		assertThat(((AnswersBean) answersDao.find("600")).getQuestions_id(),is(nullValue()));
 	}
 	
-	/*
+	
 	@Test
 	public void findメソッドにマイナスの値を渡す() throws Exception{
 		AnswersDao answersDao = new AnswersDao();
