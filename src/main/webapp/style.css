@@ -1,0 +1,349 @@
+@charset "UTF-8";
+
+/*全画面共通項目*/
+/*ヘッダー*/
+header {
+  position: fixed;/*画面上部に固定して表示*/
+  top: 0;
+  left: 0;
+  width: 100%;/*幅*/
+  padding: 2%;
+  background: #000000;
+  border: 0;
+  box-sizing: border-box;
+  
+}
+  
+/*ヘッダー内ロゴの設定*/
+.logo {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: "Arial Black";
+  font-weight: bold;
+  font-size: 180%;
+  color: #eee;
+}
+
+/*全画面共通フォントの設定*/
+body{
+	background-color:#dddddd;
+	
+	font-family: "游ゴシック","Yu Gothic",YuGothic,sans-serif;
+
+}
+
+/*見出し*/
+h1 {
+	padding: 8% 0 0;
+	text-align:  center;
+	
+    font-size: 120%;    	    
+}
+
+/*ボタンのフォント統一*/
+button{
+	font-family: "游ゴシック","Yu Gothic",YuGothic,sans-serif;
+}
+
+
+
+
+
+/*login画面*/
+/*login画面のformの位置設定*/
+.loginForm{
+	line-height:2;
+	/*formの位置を中央位置に設定*/
+	text-align:  center;	
+}
+
+/*テキストボックスの行間調整*/
+.loginP{
+	line-height:2;
+}
+
+/*id・pwテキストボックスのデザイン*/
+.loginTextBox{
+	border: none;
+	padding:7px;
+	border-radius: 20px;
+	
+}
+
+
+/*login画面のloginボタン*/
+ button[class~="loginButton"]{
+	background: #eee;
+	border-radius: 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    width: 7%;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    
+}
+
+button[class~="loginButton"]:hover {
+    background: #313131;
+    color: #FFF;
+}
+
+button[class~="loginButton"]:after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #313131;
+    border-right: 3px solid #313131;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 40%;
+    right: 7px;
+    border-radius: 1px;
+    transform: rotate(45deg);
+    transition: all .3s;
+}
+button[class~="loginButton"]:hover:after {
+    border-color: #FFF;
+    animation: arrowrotate .3s;
+}
+
+
+
+
+/*logoutボタン*/
+ button[class~="logoutButton"]{
+	background: #eee;
+	border-radius: 50px;
+    position: fixed;
+    top:100px;
+    right:15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    width: 7%;
+    padding: 2px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    
+}
+
+button[class~="logoutButton"]:hover {
+    background: #313131;
+    color: #FFF;
+}
+
+button[class~="logoutButton"]:after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #313131;
+    border-right: 3px solid #313131;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 40%;
+    right: 7px;
+    border-radius: 1px;
+    transform: rotate(45deg);
+    transition: all .3s;
+}
+button[class~="logoutButton"]:hover:after {
+    border-color: #FFF;
+    animation: arrowrotate .3s;
+}
+
+/*topボタン*/
+button[class~="topButton"]{
+	background: #eee;
+	border-radius: 50px;
+    position: fixed;
+    top:100px;
+    right:120px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    width: 7%;
+    padding: 2px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    
+}
+
+button[class~="topButton"]:hover {
+    background: #313131;
+    color: #FFF;
+}
+
+button[class~="topButton"]:after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #313131;
+    border-right: 3px solid #313131;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 40%;
+    right: 7px;
+    border-radius: 1px;
+    transform: rotate(45deg);
+    transition: all .3s;
+}
+button[class~="topButton"]:hover:after {
+    border-color: #FFF;
+    animation: arrowrotate .3s;
+}
+
+/*top画面のボタン*/
+button[class~="topPageButton"] {
+    background: #eee;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 270px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    border-radius: 50px;
+}
+button[class~="topPageButton"]:before {
+    content: '';
+    position: absolute;
+    top: calc(50% - 2px);
+    right: -2em;
+    transform: translateY(calc(-50% - 2px)) rotate(30deg);
+    width: 12px;
+    height: 2px;
+    background-color: #6bb6ff;
+    transition: 0.3s;
+}
+button[class~="topPageButton"]:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -2em;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: #6bb6ff;
+    transition: 0.3s;
+    
+}
+button[class~="topPageButton"]:hover:before, .button006 a:hover:after {
+    right: -2.5em;
+}
+button[class~="topPageButton"]:hover {
+    background: #313131;
+    color: #FFFF;
+}
+
+/*list画面*/
+/*全体の中央寄せ設定*/
+.box{
+	text-align: center;
+}
+
+/*中央寄せ左揃えの設定(適用されず調べ中)
+.box.box1{
+	text-align:left;
+	display: inline-block;
+}
+
+.box.box2{
+	text-align:left;
+	display: inline-block;
+}*/
+
+/*問題idのテキストボックス*/
+.QidTextBox{
+	border: none;
+	padding:6px;
+	border-radius: 20px;
+	width:15px;
+	text-align: center;
+}
+
+/*問題のテキストボックス*/
+.QTextBox{
+	border: none;
+	padding:7px;
+	border-radius: 20px;
+	width:500px;
+}
+
+/*答えのテキストボックス*/
+.ATextBox{
+	border: none;
+	padding:7px;
+	border-radius: 20px;
+	width:500px;
+}
+
+/*新規登録ボタンを中央に配置*/
+.registerButton{
+	text-align: center;
+}
+
+/*新規登録・削除・編集ボタンのデザイン*/
+.edit-deleteButton{
+    /*矢印の基点とするためrelativeを指定*/
+  position: relative;
+    /*ボタンの形状*/
+  border: none;
+  outline: none;
+  background: transparent;
+  text-decoration: none;
+  display: inline-block;
+  background:;
+  color:;
+  padding: 10px 22px 10px 10px;
+  
+  
+  transition: color .3s;
+   
+}
+
+.edit-deleteButton:hover{
+  color: #6bb6ff;
+}
+
+/* 矢印が回転 */
+
+.edit-deleteButton::after{
+    content: '';
+    /*絶対配置で矢印の位置を決める*/
+    position: absolute;
+    top: 42%;
+    right: 13px;
+    /*矢印の形状*/    
+    width: 5px;
+    height: 5px;
+    border-top: 2px solid #313131;
+    border-right: 2px solid #313131;
+    transform: rotate(45deg);
+    /*アニメーションの指定*/    
+    transition: all .3s;
+}
+
+/*hoverした際のアニメーション*/
+.edit-deleteButton:hover::after{
+  animation: arrowrotate .3s;
+}
+
+@keyframes arrowrotate {
+100% {
+    transform: rotate(360deg);
+  }
+}
