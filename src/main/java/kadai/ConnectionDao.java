@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 		public void setConnection() throws Exception{
 			try {
 //				String url = "jdbc:mysql://localhost:3306/mybd?ServerTimezone=JST&allowPublicKeyRetrieval=true&useSSL=false";
-				String url = "jdbc:mysql://localhost:3306/mydb";
+				String url = "jdbc:mysql://localhost:3306/" + DB_NAME;
 
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				con = DriverManager.getConnection(url, DB_USER, DB_PASSWORD);

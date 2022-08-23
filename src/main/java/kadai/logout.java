@@ -2,11 +2,13 @@ package kadai;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class logout
@@ -38,13 +40,19 @@ public class logout extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
+		// セッションを取得
+		HttpSession session = request.getSession();
+		// ログイン情報のセッションを削除
+		session.removeAttribute("loginId");
 		
+		//セッション削除の確認
+		System.out.println("ログインIDは" + session.getAttribute("loginId"));
 		
+		//ログイン画面へ遷移
+		RequestDispatcher dispacher = request.getRequestDispatcher("./login.jsp");
+		dispacher.forward(request,response);
+				
 			
-		}
-	
-		
-		
-	
+	}
 
 }

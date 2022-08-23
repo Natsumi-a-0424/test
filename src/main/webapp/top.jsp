@@ -13,17 +13,16 @@
 
 	<h1>Top</h1>
 
-<!-- test_result.jspでユーザー名表示のために非表示でユーザー名を渡す -->
-	<%String users_name = (String)request.getAttribute("users_name"); %>
-	<%System.out.println(users_name); %>
+	<%String loginId = (String)session.getAttribute("loginId");
+	System.out.println("ログインIDは" + session.getAttribute("loginId"));
 	
-	<div>
-	<form action="./logout.jsp" method="POST" style="display: inline">
-		 <button type="submit"class="logoutButton" >logout</button>
-	</form>
-	</div>
-	
-	<br>
+	// ログイン中でなかった場合
+	if (session.getAttribute("loginId") == null) {
+	  // ログイン画面に遷移
+	  RequestDispatcher dispacher = request.getRequestDispatcher("./login.jsp");
+	  dispacher.forward(request,response);
+	  return ;
+	} %>
 	
 	<div>
 	<form action="./list" method="POST" style="display: inline">
@@ -33,16 +32,15 @@
 	<br>
 	
 	<form action="./test" method="POST" style="display: inline">
-	
-	
-	<input type="hidden" name="users_name" value ="<%=users_name%>" >
 		 <button type="submit" class="topPageButton"  style="width:270px">テストする</button>
 	</form>
+	
 	<br>
+	
 	<form action="./history" method="POST" style="display: inline">
-	<input type="hidden" name="users_name" value ="<%=users_name%>" >
 		 <button type="submit" class="topPageButton"  style="width:270px">過去の採点結果を見る</button>
 	</form>
+	
 	</div>
 </body>
 

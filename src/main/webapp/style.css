@@ -26,110 +26,19 @@ header {
   color: #eee;
 }
 
-/*全画面共通フォントの設定*/
-body{
-	background-color:#dddddd;
-	
-	font-family: "游ゴシック","Yu Gothic",YuGothic,sans-serif;
-
-}
-
-/*見出し*/
-h1 {
-	padding: 8% 0 0;
-	text-align:  center;
-	
-    font-size: 120%;    	    
-}
-
-/*ボタンのフォント統一*/
-button{
-	font-family: "游ゴシック","Yu Gothic",YuGothic,sans-serif;
-}
-
-
-
-
-
-/*login画面*/
-/*login画面のformの位置設定*/
-.loginForm{
-	line-height:2;
-	/*formの位置を中央位置に設定*/
-	text-align:  center;	
-}
-
-/*テキストボックスの行間調整*/
-.loginP{
-	line-height:2;
-}
-
-/*id・pwテキストボックスのデザイン*/
-.loginTextBox{
-	border: none;
-	padding:7px;
-	border-radius: 20px;
-	
-}
-
-
-/*login画面のloginボタン*/
- button[class~="loginButton"]{
+/*ログアウトボタン*/
+button[class~="logoutButton"]{
 	background: #eee;
-	border-radius: 50px;
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0 auto;
-    width: 7%;
-    padding: 10px 25px;
-    color: #313131;
-    transition: 0.3s ease-in-out;
-    font-weight: 500;
-    
-}
-
-button[class~="loginButton"]:hover {
-    background: #313131;
-    color: #FFF;
-}
-
-button[class~="loginButton"]:after {
-    content: '';
-    width: 5px;
-    height: 5px;
-    border-top: 3px solid #313131;
-    border-right: 3px solid #313131;
-    transform: rotate(45deg) translateY(-50%);
-    position: absolute;
-    top: 40%;
-    right: 7px;
-    border-radius: 1px;
-    transform: rotate(45deg);
-    transition: all .3s;
-}
-button[class~="loginButton"]:hover:after {
-    border-color: #FFF;
-    animation: arrowrotate .3s;
-}
-
-
-
-
-/*logoutボタン*/
- button[class~="logoutButton"]{
-	background: #eee;
-	border-radius: 50px;
-    position: fixed;
+	border-radius: 50px;/*角丸設定*/
+    position: fixed;/*場所固定*/
     top:100px;
     right:15px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0 auto;
-    width: 7%;
-    padding: 2px 25px;
+    display: flex;/*横並びレイアウトにするためのフレックスコンテナの指定*/
+    justify-content: space-around;/*各アイテムを均等に配置し各アイテムの両側に半分の大きさの間隔を置く*/
+    align-items: center;/*アイテムを中央付近にまとめる */
+    margin: 0 auto;/*四辺の余白*/
+    width: 7%;/*幅*/
+    padding: 2px 25px;/*内部余白*/
     color: #313131;
     transition: 0.3s ease-in-out;
     font-weight: 500;
@@ -202,6 +111,181 @@ button[class~="topButton"]:hover:after {
     border-color: #FFF;
     animation: arrowrotate .3s;
 }
+
+/*全画面共通フォントの設定*/
+body{
+	background-color:#dddddd;
+	
+	font-family: "游ゴシック","Yu Gothic",YuGothic,sans-serif;
+
+}
+
+/*見出し*/
+h1 {
+	padding: 8% 0 0;
+	text-align:  center;
+	
+    font-size: 120%;    	    
+}
+
+/*ボタンのフォント統一*/
+button{
+	font-family: "游ゴシック","Yu Gothic",YuGothic,sans-serif;
+}
+
+
+/*login画面*/
+/*login画面のformの位置設定*/
+.loginForm{
+	line-height:2;
+	/*formの位置を中央位置に設定*/
+	text-align:  center;	
+}
+
+/*テキストボックスの行間調整*/
+.loginP{
+	line-height:2;
+}
+
+/*id・pwテキストボックスのデザイン*/
+.loginTextBox{
+	border: none;
+	padding:7px;
+	border-radius: 20px;
+	
+}
+
+
+/*login画面のloginボタン*/
+ button[class~="loginButton"]{
+	background: #eee;
+	border-radius: 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    width: 7%;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    
+}
+
+button[class~="loginButton"]:hover {
+    background: #313131;
+    color: #FFF;
+}
+
+button[class~="loginButton"]:after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #313131;
+    border-right: 3px solid #313131;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 40%;
+    right: 7px;
+    border-radius: 1px;
+    transform: rotate(45deg);
+    transition: all .3s;
+}
+button[class~="loginButton"]:hover:after {
+    border-color: #FFF;
+    animation: arrowrotate .3s;
+}
+
+
+/*ログアウトボタン
+button[class~="logoutButton"]{
+	background: #eee;
+	border-radius: 50px;
+    position: fixed;
+    top:100px;
+    right:15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    width: 7%;
+    padding: 2px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    
+}
+
+button[class~="logoutButton"]:hover {
+    background: #313131;
+    color: #FFF;
+}
+
+button[class~="logoutButton"]:after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #313131;
+    border-right: 3px solid #313131;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 40%;
+    right: 7px;
+    border-radius: 1px;
+    transform: rotate(45deg);
+    transition: all .3s;
+}
+button[class~="logoutButton"]:hover:after {
+    border-color: #FFF;
+    animation: arrowrotate .3s;
+}
+
+*/
+
+
+/*topボタン
+button[class~="topButton"]{
+	background: #eee;
+	border-radius: 50px;
+    position: fixed;
+    top:100px;
+    right:120px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    width: 7%;
+    padding: 2px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    
+}
+
+button[class~="topButton"]:hover {
+    background: #313131;
+    color: #FFF;
+}
+
+button[class~="topButton"]:after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #313131;
+    border-right: 3px solid #313131;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 40%;
+    right: 7px;
+    border-radius: 1px;
+    transform: rotate(45deg);
+    transition: all .3s;
+}
+button[class~="topButton"]:hover:after {
+    border-color: #FFF;
+    animation: arrowrotate .3s;
+}*/
 
 /*top画面のボタン*/
 button[class~="topPageButton"] {

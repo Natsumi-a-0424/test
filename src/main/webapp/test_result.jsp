@@ -9,11 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%String users_name = (String)request.getAttribute("users_name"); %>
-	<%int queNum = (int)request.getAttribute("queNum"); %>
+	<%String usersName = (String)request.getAttribute("userName"); %>
+	<%int questionsNumber = (int)request.getAttribute("questionsNumber"); %>
 	<%int correct = (int)request.getAttribute("count"); %>
-	<%int score = (int)request.getAttribute("score"); %>
-	<%String time = (String)request.getAttribute("scoring_time"); %>
+	<%int score = (int)request.getAttribute("point"); %>
+	<%String time = (String)request.getAttribute("time"); %>
 	
 	<h1>― テスト採点結果 ―</h1>
 	
@@ -26,12 +26,10 @@
 	</form>
 
 	
-	<p><%=users_name %>さん</p>
-	
-	<%request.setAttribute("users_name", users_name); %>
+	<p><%=usersName %>さん</p>
 	
 	<!-- 問題数と正解数 -->
-	<p><%=queNum %>問中<%=correct %>問正解です。</p>
+	<p><%=questionsNumber %>問中<%=correct %>問正解です。</p>
 	
 	<!-- 正解数÷問題数で点数表示。小数点以下四捨五入 -->
 	<p><%=score %>点でした。</p>

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class test
@@ -39,55 +40,45 @@ public class test extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		//test_result.jspで表示するユーザー名の受け取り
-		String users_name = null;
-		users_name = request.getParameter("users_name");
-		
-		System.out.println(users_name);
-		
-		request.setAttribute("users_name", users_name);
+		// セッションを取得
+		HttpSession session = request.getSession();
+		System.out.println("ログインIDは" + session.getAttribute("loginId"));
+					
+		// ログイン中でなかった場合
+		if (session.getAttribute("loginId") == null) {
+						
+			// ログイン画面に遷移
+			RequestDispatcher dispacher = request.getRequestDispatcher("./login.jsp");
+			dispacher.forward(request,response);
+			return ;
+		}
 		
 		/*流れ
 		 * questionsテーブルからidとquestionをランダムで全件取得 
 		 * 取得したものをsetAttributeしてtest.jspに遷移*/
 		
-		//QuestionsDaoオブジェクトをインスタンス化
-		QuestionsDao queDao = null;
 		try {
-			queDao = new QuestionsDao();
+			//QuestionsDaoオブジェクトをインスタンス化
+			QuestionsDao questionsDao = new QuestionsDao();
+				
+			//実行結果を配列(ArrayList)として受け取る
+			ArrayList<QuestionsBean> questionsList = (ArrayList<QuestionsBean>)questionsDao.random();
+			
+			//取得した配列の件数をコンソールに出力
+			System.out.println(questionsList.size());
+			
+			//取得した配列をsetAttributeする
+			request.setAttribute("questionsList", questionsList);
+			
+			//test.jspに遷移
+			RequestDispatcher dispatcher =  request.getRequestDispatcher("./test.jsp");//test.jspに遷移
+	        //フォワードの実行
+	        dispatcher.forward(request, response);
+			
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		
-		//実行結果を配列(ArrayList)として受け取る
-		ArrayList<QuestionsBean> queList = null;
-		
-		try {
-			queList = (ArrayList<QuestionsBean>)queDao.random();
-		} catch (DAOException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-		//取得した配列の件数をコンソールに出力
-		System.out.println(queList.size());
-		
-		//取得した配列をsetAttributeする
-		request.setAttribute("queList", queList);
-		
-		//test.jspに遷移
-		RequestDispatcher dispatcher =  request.getRequestDispatcher("./test.jsp");//list.jspに遷移
-        //フォワードの実行
-        try {
-			dispatcher.forward(request, response);
-		} catch (ServletException e1) {
-			// TODO 自動生成された catch ブロック
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO 自動生成された catch ブロック
-			e1.printStackTrace();
-		}
-		
 	}
 
 }

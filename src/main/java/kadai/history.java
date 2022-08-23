@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class history
@@ -39,47 +40,53 @@ public class history extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		//top.jspからユーザー名の受け取り
-		String users_name = null;
-		users_name = request.getParameter("users_name");
-		
-		System.out.println(users_name);
-		
-		//HistoryDaoオブジェクトをインスタンス化
-		HistoryDao hisDao = null;
 		try {
-			hisDao = new HistoryDao();
+			// セッションを取得
+			HttpSession session = request.getSession();
+			System.out.println("ログインIDは" + session.getAttribute("loginId"));
+			
+			// ログイン中でなかった場合
+			if (session.getAttribute("loginId") == null) {
+				
+				// ログイン画面に遷移
+				RequestDispatcher dispacher = request.getRequestDispatcher("./login.jsp");
+				dispacher.forward(request,response);
+				return ;
+			}
+
+			//loginIdをString型からint型へ変換
+			String loginId = (String)session.getAttribute("loginId");
+			int intLoginId = Integer.parseInt(loginId); 
+			
+			//history.jspで表示するユーザー名の取得
+			UsersDao dao = new UsersDao();
+			UsersBean userName = (UsersBean)dao.findName(intLoginId);
+			
+			System.out.println(userName.getName());
+			
+			request.setAttribute("userName", userName.getName());
+			
+			//HistoryDaoオブジェクトをインスタンス化
+			HistoryDao historyDao = new HistoryDao();
+			
+			//intloginIdをキーにして、HistoryDaoオブジェクトのもつfindメソッドで履歴を取得
+			ArrayList<HistoryBean> historyList = (ArrayList<HistoryBean>) historyDao.find(intLoginId);
+		
+		
+			//履歴の取得件数をコンソールに出力
+			System.out.println(historyList.size());
+		
+			request.setAttribute("historyList",historyList);
+		
+			RequestDispatcher dispatcher =  request.getRequestDispatcher("./history.jsp");
+			//フォワードの実行
+			
+			dispatcher.forward(request, response);
+			
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		
-		//ユーザー名をキーにして、HistoryDaoオブジェクトのもつfindメソッドで履歴を取得
-		ArrayList<HistoryBean> hisList = null;
-		try {
-			hisList = (ArrayList<HistoryBean>) hisDao.find(users_name);
-		} catch (DAOException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-		
-		//履歴の取得件数をコンソールに出力
-		System.out.println(hisList.size());
-		
-		request.setAttribute("hisList",hisList);
-		
-		RequestDispatcher dispatcher =  request.getRequestDispatcher("./history.jsp");
-        //フォワードの実行
-        try {
-			dispatcher.forward(request, response);
-		} catch (ServletException e1) {
-			// TODO 自動生成された catch ブロック
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO 自動生成された catch ブロック
-			e1.printStackTrace();
-		}
-		
 		
 	}
 

@@ -26,36 +26,31 @@
 	
 	<form action="./test_result" method="POST" ><!-- 遷移先test_result.javaでPOSTメソッドで送信 -->
 		<!-- 問題文の配列を取得 -->
-		<%ArrayList<QuestionsBean> queList= (ArrayList<QuestionsBean>)request.getAttribute("queList"); %>
+		<%ArrayList<QuestionsBean> questionsList= (ArrayList<QuestionsBean>)request.getAttribute("questionsList"); %>
 		
 		<!-- 連番の付与と配列分繰返し表示 -->
 		<%int i = 1;
-		for(QuestionsBean queData : queList){ %>
+		for(QuestionsBean questionsData : questionsList){ %>
 		
 		<p><label for="question">
 			<!-- 問題の連番付与 -->
 			<%= i++ %>
 			<!-- 問題文テキストボックスは入力不可 -->
-			<input type="hidden" name="ID[]" value="<%=queData.getId()%>">
-			<input type="text" id="question[]" value="<%=queData.getQuestion()%>" readonly>
+			<input type="hidden" name="ID[]" value="<%=questionsData.getId()%>">
+			<input type="text" id="question[]" value="<%=questionsData.getQuestion()%>" readonly>
 			
-			<%System.out.println(queData.getId()); %>
-			<%System.out.println(queData.getQuestion()); %>
+			<%System.out.println(questionsData.getId()); %>
+			<%System.out.println(questionsData.getQuestion()); %>
 		</label></p>
 	
-		<p><Label for="answer">
+		<p><label for="answer">
 			回答
 			<!-- 入力可能なテキストボックス -->
 			<input type="text" id="answer[]" name="usersAnswer[]">
-		
-		</Label></p>
+		</label></p>
 		
 		<%} %>
 		
-		<!-- test_result.jspで表示するユーザー名を非表示で渡す -->
-		<%String users_name = (String)request.getAttribute("users_name"); %>
-		<%System.out.println(users_name); %>
-		<input type="hidden" name="users_name" value ="<%=users_name%>" >
 		<!-- 内容を保持してtest_result.javaに遷移 -->
 		<button type="submit">採点</button>
 	</form>

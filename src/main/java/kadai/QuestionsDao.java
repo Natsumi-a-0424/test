@@ -153,11 +153,7 @@ import java.util.List;
 				st = con.prepareStatement(sql);//sql文の発行
 				st.setString(1, dd);//パラメータのインデックスを1、パラメータがdd
 				rs = st.executeUpdate();//実行結果を格納
-				
-					
-				
 
-				
 				return rs;//削除した行数を返す
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -184,7 +180,7 @@ import java.util.List;
 				 */
 		//Srting型の変数rgstを使ってInt型を返すinsertメソッド
 		//String型変数rgstはregister.javaから渡されたquestion
-		public int insert(String rgst) throws DAOException{
+		public int insertAndGetId(String rgst) throws DAOException{
 			if (con == null) {
 				try {
 					setConnection();

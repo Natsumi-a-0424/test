@@ -18,7 +18,7 @@ public class HistoryDao extends ConnectionDao {
 	 */
 	//Srting型の変数rgstを使ってInt型を返すinsertメソッド
 	//String型変数rgstはregister.javaから渡されたquestion
-	public int insert(String users_name,double score,String scoring_time) throws DAOException{
+	public int insert(int login_id, double point, String created_at) throws DAOException{
 		if (con == null) {
 			try {
 				setConnection();
@@ -34,12 +34,12 @@ public class HistoryDao extends ConnectionDao {
 		try {
 			//questionsテーブルに追加する
 			//questionsテーブルのquestionカラムにString型rgstのパラメータを追加(created_at,updata_atカラムの時刻はtimestampにて)
-			String sql = "insert into history (users_name, score,scoring_time) values(?,?,?);";
+			String sql = "insert into histories (user_id, point, created_at) values(?,?,?);";
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);//sql文をデータベースに向けて発行
-			st.setString(1, users_name);//インデックス1にパラメータをusers_nameを指定
-			st.setDouble(2, score);//インデックス2にパラメータをscoreを指定
-			st.setString(3,scoring_time);//インデックス3にパラメータをscoring_timeを指定
+			st.setInt(1, login_id);//インデックス1にパラメータをuser_idを指定
+			st.setDouble(2, point);//インデックス2にパラメータをpointを指定
+			st.setString(3,created_at);//インデックス3にパラメータをcreated_atを指定
 			rs = st.executeUpdate();//実行結果を格納		
 		
 			
@@ -64,11 +64,11 @@ public class HistoryDao extends ConnectionDao {
 	}
 	
 	/**
-	 * 指定users_nameのレコードを取得する
+	 * 指定users_idのレコードを取得する
 	 * @throws Exception 
 	 */
 	//String型変数idを利用するList<AnswersBean>型で返すfindメソッドを定義
-	public List<HistoryBean> find(String users_name) throws DAOException {
+	public List<HistoryBean> find(int loginId) throws DAOException {
 		if (con == null) {//conがnullのとき
 			try {
 				setConnection();//データベースに接続
@@ -81,18 +81,19 @@ public class HistoryDao extends ConnectionDao {
 		ResultSet rs = null;//実行結果を格納するためのResultSet型変数rsを宣言
 		try {
 			//correct_answersテーブルの中で、渡されたパラメータをquestions_idとして一致する行を取得するsql文を作成
-			String sql = "SELECT * from history where users_name=? order by scoring_time ;";
+			String sql = "SELECT * from histories where user_id=? order by created_at;";
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);//データベースに向けてsql文の発行
-			st.setString(1, users_name);//パラメータのインデックスを1
+			st.setInt(1, loginId);//パラメータのインデックスを1
 			rs = st.executeQuery();
 			
 			List<HistoryBean> list = new ArrayList<HistoryBean>();
 			while (rs.next()) {
-				String users_name1 = rs.getString("users_name");
-				int score = rs.getInt("score");
-				String scoring_time = rs.getString("scoring_time");
-				HistoryBean bean = new HistoryBean(users_name1, score, scoring_time);
+				int id = rs.getInt("id");
+				int user_id = rs.getInt("user_id");
+				int point = rs.getInt("point");
+				String created_at = rs.getString("created_at");
+				HistoryBean bean = new HistoryBean(id, user_id, point, created_at);
 				list.add(bean);
 			}
 			return list;

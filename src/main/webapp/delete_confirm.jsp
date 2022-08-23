@@ -27,26 +27,26 @@
 		
 		<br>
 	<!-- リクエストスコープからデータを取得 -->
-	<% 	QuestionsBean qb= (QuestionsBean)request.getAttribute("qb");%>
-	<% ArrayList<AnswersBean> ansList=(ArrayList<AnswersBean>)request.getAttribute("ansList");%>			
+	<% 	QuestionsBean questionsBean= (QuestionsBean)request.getAttribute("questionsBean");%>
+	<% ArrayList<AnswersBean> answersList=(ArrayList<AnswersBean>)request.getAttribute("answersList");%>			
  	
  	
 	<label for="question">
 		問題:
-		<input type="text" name="question" id="question" value="<%=qb.getQuestion()%>"readonly>
+		<input type="text" name="question" id="question" value="<%=questionsBean.getQuestion()%>"readonly>
 	</label>
 	
 	<br>
 
 	<% int i = 1;
-	for(AnswersBean ansData : ansList){	%>
+	for(AnswersBean answersData : answersList){	%>
 	
 		 
-		<%if(ansData.getQuestions_id() == qb.getId()) { %>
+		<%if(answersData.getQuestions_id() == questionsBean.getId()) { %>
 		
 		<label for="answer">
 			答え<%= i++ %>:
-			<input type="text" name="answer" id="answer" value="<%=ansData.getAnswer()%>"readonly>
+			<input type="text" name="answer" id="answer" value="<%=answersData.getAnswer()%>"readonly>
 		</label>
 		
 		<br>
@@ -58,7 +58,7 @@
   <button type="button" onclick="history.back()">戻る</button>
   
   <form action="./delete_final_confirm" method="POST" style="display: inline">
-  <input type="hidden" name="ID" value ="<%=qb.getId()%>" >
+  <input type="hidden" name="deleteQId" value ="<%=questionsBean.getId()%>" >
   <button>削除</button> 
 	</form>	
 

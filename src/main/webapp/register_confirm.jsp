@@ -24,15 +24,13 @@
 	
 	<form action="./register" method="POST">
 	
-	<%String question = null;
-	question = request.getParameter("QUESTION"); %>
+	<%String question = request.getParameter("QUESTION"); %>
 	
-	<%String[] answer = null;
-		answer = request.getParameterValues("input[]"); %>
+	<%String[] answer = request.getParameterValues("input[]"); %>
 		
 		
 		<label for="question">問題</label>
-		<input type="text" name="rgstQuestion" id="question" value="<%=question%>" readonly>
+		<input type="text" name="registerQuestion" id="question" value="<%=question%>" readonly>
 		
 		<br>
 		
@@ -41,7 +39,7 @@
 		     for (int i = 0 ; i < answer.length ; i++){ %>
 		
 		<label for="answers">答え<%=num++%>:</label>
-		<input type="text" name="rgstAnswer" id="answers" value="<%=answer[i]%>"readonly>
+		<input type="text" name="registerAnswer" id="answers" value="<%=answer[i]%>"readonly>
 		 
 		<br>
 		

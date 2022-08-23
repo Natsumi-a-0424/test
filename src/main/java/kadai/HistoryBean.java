@@ -1,40 +1,47 @@
 package kadai;
 
 public class HistoryBean{
-	private String users_name;
-	private int score;
-	private String scoring_time;
+	private int id;
+	private int user_id;
+	private int point;
+	private String created_at;
 	
 	/**
 	 * コンストラクタ
 	 */
-		public HistoryBean(String users_name, int score, String scoring_time) {
-			this.users_name = users_name;
-			this.score = score;
-			this.scoring_time = scoring_time;
+		public HistoryBean(int id,int user_id, int point, String created_at) {
+			this.id = id;
+			this.user_id = user_id;
+			this.point = point;
+			this.created_at = created_at;
 		}
 		
 		/** 引数無しのコンストラクタ **/
 		public HistoryBean() {
 
 		}
-	
-	public String getUsers_name() {
-		return users_name;
+	public int getId() {
+		return id;
 	}
-	public void setUsers_name(String users_name) {
-		this.users_name = users_name;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public int getScore() {
-		return score;
+	public int getUser_id() {
+		return user_id;
 	}
-	public void setScore(int score) {
-		this.score = score;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
-	public String getScoring_time() {
-		return scoring_time;
+	public int getPoint() {
+		return point;
 	}
-	public void setScoring_time(String scoring_time) {
-		this.scoring_time = scoring_time;
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	public String getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
 	}
 }

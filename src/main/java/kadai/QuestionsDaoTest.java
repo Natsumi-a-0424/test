@@ -135,7 +135,7 @@ class QuestionsDaoTest {
 
 	//insertメソッドは問題文のidの最大値を返す
 	
-	//テスト実行時に毎回最大値を取得するので注意
+	//テスト実行時に毎回最大値を取得する
 	/*
 	@Test
 	public void insertメソッドに全角文字を渡す() throws Exception{

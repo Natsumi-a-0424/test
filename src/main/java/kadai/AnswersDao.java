@@ -3,6 +3,7 @@ package kadai;
 
 	import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -178,8 +179,8 @@ import java.util.List;
 				
 				
 		}
-			
-			public void insert(int questions_id,String[] rgst) throws DAOException{//int型変数questions_idと、配列のSrting型の変数rgstを使うinsertメソッド(何も返さないのでvoid型)
+		//int型変数questions_idと、配列のSrting型の変数rgstを使うinsertメソッド
+			public int insert(int questions_id,String[] rgst) throws DAOException{
 				if (con == null) {
 					try {
 						setConnection();
@@ -194,6 +195,7 @@ import java.util.List;
 					//correct_answersテーブルに追加する
 					String sql = "insert into correct_answers (questions_id, answer,created_at,updated_at) values(?,?,now(),now());";
 					/** PreparedStatement オブジェクトの取得**/
+					con.setAutoCommit(false);
 					for(int i =0; i<rgst.length; i++) {
 					
 						st = con.prepareStatement(sql);
@@ -201,12 +203,19 @@ import java.util.List;
 						st.setString(2,rgst[i]);
 						rs = st.executeUpdate();	
 					}
-					
-					
+					con.commit();
+					con.setAutoCommit(true);
 
 					
-					return;//void型なので何も返さない
+					return rs;//登録レコード件数を返す
 				} catch (Exception e) {
+					try {
+						con.rollback();
+						con.setAutoCommit(true);
+					} catch (SQLException e1) {
+						// TODO 自動生成された catch ブロック
+						e1.printStackTrace();
+					}
 					e.printStackTrace();
 					throw new DAOException("レコードの取得に失敗しました");
 				} finally {

@@ -30,17 +30,17 @@
 	<div>	
 	 <form action="./edit_confirm" method="POST" style="display: inline">
 	<!-- リクエストスコープからデータを取得 -->
-	<% 	QuestionsBean qb= (QuestionsBean)request.getAttribute("editQuestion");%>
-	<% ArrayList<AnswersBean> ansList=(ArrayList<AnswersBean>)request.getAttribute("editAnswer");%>			
+	<% 	QuestionsBean questionsBean= (QuestionsBean)request.getAttribute("editQuestion");%>
+	<% ArrayList<AnswersBean> answersList=(ArrayList<AnswersBean>)request.getAttribute("editAnswer");%>			
  	
  	<label for="id">問題番号:
- 	 <input type="text" name="ID" id="id" style="width:2%" value ="<%=qb.getId()%>" readonly>
+ 	 <input type="text" name="questionsId" id="id" style="width:2%" value ="<%=questionsBean.getId()%>" readonly>
  	</label>
  	
 	<label for="question">
 		問題:
 		<!-- テキストボックスにeditQuestionから取得した問題文questionを表示 -->
-		<input type="text" name="question" id="question" value="<%=qb.getQuestion()%>">
+		<input type="text" name="question" id="question" value="<%=questionsBean.getQuestion()%>">
 	</label>
 	
 	<br>
@@ -107,19 +107,19 @@
 
 	<% int i = 1;
 	//ansListの要素分だけ繰返し取得、AnswersBean型変数ansDataに格納
-	for(AnswersBean ansData : ansList){	%>
+	for(AnswersBean answersData : answersList){	%>
 	
-		 <!-- ansListから取得したquestions_idとqbから取得したidが一致 -->
-		<%if(ansData.getQuestions_id() == qb.getId()) { %>
+		 <!-- answersListから取得したquestions_idとquestionsBeanから取得したidが一致 -->
+		<%if(answersData.getQuestions_id() == questionsBean.getId()) { %>
 		
 		<div class="box" data-formno="0" >
 		
 		<p><label for="ans">
 			答え<a class="no"><%= i++ %></a>:<!-- 繰り返した分だけ数字が増える -->
 			<!-- 非表示状態でansListからquestions_idを取得 -->
-			<input type="hidden" name="questions_id" value ="<%=ansData.getQuestions_id()%>" >
+			<input type="hidden" name="questions_id" value ="<%=answersData.getQuestions_id()%>" >
 			<!-- テキストボックスにansListから取得したanswerを表示 -->
-			<input type="text" name="input[]" class="answer" value="<%=ansData.getAnswer()%>">
+			<input type="text" name="input[]" class="answer" value="<%=answersData.getAnswer()%>">
 		</label>
 		
 		<a><button type="button" class="deletformbox">削除</button></a></p>

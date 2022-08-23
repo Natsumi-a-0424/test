@@ -170,7 +170,57 @@ import java.util.List;
 					throw new DAOException("リソースの開放に失敗しました");
 				}
 			
-			}	
+			}
+			
+		}
+			
+			public UsersBean findName(int login_id) throws Exception {
+				if (con == null) {
+					try {//Connectionがnullだったら
+						setConnection();
+					} catch (Exception e) {
+						// TODO 自動生成された catch ブロック
+						e.printStackTrace();//例外発生までに実行したメソッドの時系列一覧表示
+					}
+				}
+				PreparedStatement st = null;//sql文をデータベースに送るためPreperedStatment型変数stを宣言
+				ResultSet rs = null;//データベースからの実行結果を格納するためのresultSet型変数rsの宣言
+				try {
+					/*usersテーブルのidが入力された値(login_id)に一致する名前(name)を検索*/
+					String sql = "SELECT name FROM users where id = ?;";
+
+					/** PreparedStatement オブジェクトの取得**/
+					st = con.prepareStatement(sql);//sql文をデータベースに送る
+					st.setInt(1, login_id);//パラメータのインデックス1、パラメータがlogin_id
+					rs = st.executeQuery();//stが取得してきた実行結果を格納
+					UsersBean bean = new UsersBean();
+					while(rs.next()){
+						String name = rs.getString("name");
+						bean.setName(name);
+	
+					}
+					
+					
+
+				return bean;//
+				} catch (Exception e) {
+					e.printStackTrace();
+					throw new DAOException("レコードの取得に失敗しました");
+				} finally {//例外が発生してもしなくても
+					try {
+						if (rs != null){
+								rs.close();
+						}				
+						if (st != null) {
+								st.close();
+						}
+						close();
+					} catch (Exception e) {
+						e.printStackTrace();
+						throw new DAOException("リソースの開放に失敗しました");
+					}
+				
+				}	
 			
 	}
 }

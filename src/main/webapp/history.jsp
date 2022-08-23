@@ -13,7 +13,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="kadai.HistoryBean"%>
 
-<%ArrayList<HistoryBean> hisList = (ArrayList<HistoryBean>)request.getAttribute("hisList"); %>
+<%ArrayList<HistoryBean> historyList = (ArrayList<HistoryBean>)request.getAttribute("historyList"); %>
 
 	<h1>― 採点結果　履歴 ―</h1>
 
@@ -36,13 +36,14 @@
 			<th>得点</th>
 			<th>採点時間</th>
 		</tr>
-	
-		<%for(HistoryBean hisData : hisList){ %>
-
+		
+			
+		<%for(HistoryBean historyData : historyList){ %>
+		<% String userName = (String)request.getAttribute("userName");%>
 			<tr>
-				<td><%=hisData.getUsers_name() %></td>
-				<td><%=hisData.getScore() %></td>
-				<td><%=hisData.getScoring_time() %></td>
+				<td><%=userName%></td>
+				<td><%=historyData.getPoint() %></td>
+				<td><%=historyData.getCreated_at() %></td>
 			</tr>
 			
 		<%} %>

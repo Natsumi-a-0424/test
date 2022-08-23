@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class Login
  */
@@ -39,61 +40,38 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
 		// TODO Auto-generated method stub
 		
-		//getParameterメソッド使用してデータ取得、取得した値をString型の変数に代入
-		String id = null;//String型変数idの宣言
-		id = request.getParameter("ID");//login.jspのテキストボックスIDに入力された値を取得
-		String pw = null;//String型変数psの宣言
-		pw = request.getParameter("PW");//login.jspのテキストボックスPWに入力された値を取得
+		
+		String id = request.getParameter("ID");
+		String pw = request.getParameter("PW");
 		
 		
 		//#UsersDao型のオブジェクト、「dao」を用意
-		UsersDao dao = null;//UsersDao型変数daoの宣言
-		try {
-			dao = new UsersDao();//UsersDaoオブジェクトをインスタンス化	
-		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();//例外発生時までに実行したメソッドの時系列一覧を表示
-		}
-
 		//#ArrayList(配列)としてUsersBean型のlistを作り、そこにdaoオブジェクト(UsersDaoクラス)が持つfindAllメソッドを実行した戻り値を格納
-		ArrayList<UsersBean> list = null;//#ArrayList(配列)としてUsersBean型のlistを宣言
+		
 			try {
+				UsersDao dao = new UsersDao();//UsersDaoオブジェクトをインスタンス化	
 				//daoオブジェクト(UsersDaoクラス)が持つfindAllメソッドを実行した戻り値を配列で格納
-				list = (ArrayList<UsersBean>) dao.findAll();
-			} catch (DAOException e1) {
-				// TODO 自動生成された catch ブロック
-				e1.printStackTrace();
-			}
-			// TODO 自動生成された catch ブロック
-
-		
-		
-		UsersBean data = null;//listに格納されている配列から取り出した要素を格納するためのUsersBean型変数dataの宣言
-		
-		/*変数dataの宣言と初期化、、条件式評価trueで繰返し実行で変数iの値出力、繰返し一回目終了
-		 * 変化式で変数iが1増加（i=1）、繰返し実行2回目終了、変化式で変数iが1増加（i=2）、
-		 * 変数iがリストの要素より小さいうちは繰返し実行*/
-		for(int i = 0;  i <list.size() ; i++) {//findAllメソッドで取得した配列分繰返し
+				ArrayList<UsersBean> list = (ArrayList<UsersBean>) dao.findAll();
 			
-			data = list.get(i);//findAllメソッドで取得した配列のi番目の値を格納
+			for (UsersBean data : list) {
 		
-			//繰り返しの中で実行される内容
-			//login.jspから取得したパラメータidとlist内のi番目のidと等しければ、次にPWがlist内のi番目と等しいか
-			//String型変数strに、dataに格納されている配列から取得したidをint型からString型に変換して格納
-			String str = String.valueOf(data.getId());
-			if(id.equals(str)) {//login.jspから取得したパラメータidと、UsersDaoから取得した配列にあるidが一致
+			
+			if(id.equals(String.valueOf(data.getId()))) {//login.jspから取得したパラメータidと、UsersDaoから取得した配列にあるidが一致
 				
 				
-				str = data.getPassword();//dataに格納してある配列から取得したpasswordを格納				
-				if(pw.equals(str)) {//login.jspから取得したpwと配列から取得したpasswordが一致
+				//dataに格納してある配列から取得したpasswordを格納				
+				if(pw.equals(data.getPassword())) {//login.jspから取得したpwと配列から取得したpasswordが一致
 					
 					/*test_result用に上記idとpwに一致するnameを取得してsetAttribute*/
-					str = data.getName();
-					System.out.println(str);
-					request.setAttribute("users_name",str);
+					//request.setAttribute("users_name",data.getName());
 					
-					//TOPへ
-
+					// セッションを取得
+					HttpSession session = request.getSession();
+					// ログイン判定処理
+					// ログイン成功時 セッションにIDを入れる。
+					session.setAttribute("loginId", id );
+					
+					//ログイン成功、TOPへ
 					RequestDispatcher next =  request.getRequestDispatcher("./top.jsp");//top.jspに遷移
 			        //フォワードの実行
 			        try {
@@ -127,34 +105,20 @@ public class Login extends HttpServlet {
 		}
 
 		
-		
-		
+			
 		
 		RequestDispatcher dispatcher =  request.getRequestDispatcher("./login.jsp");
         //フォワードの実行
-        try {
+       
 			dispatcher.forward(request, response);
-		} catch (ServletException e1) {
-			// TODO 自動生成された catch ブロック
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO 自動生成された catch ブロック
-			e1.printStackTrace();
-		}
-		
-		
-	
-		
-		
-		try {
+
 			doGet(request, response);
-		} catch (ServletException e) {
+		
+			} catch (Exception e1) {
+				// TODO 自動生成された catch ブロック
+				e1.printStackTrace();
+			}
 			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
 	}
 
 }

@@ -32,7 +32,7 @@
 		 <span class="result_text" style="text-align:  center; font-size:90%; line-height:0%"></span>
 		 
 		 <p class="loginP">
-			 <label for="pw">pw:</label><!-- テキストボックスにpw:のラベル付け -->
+			 <label for="pw">PW:</label><!-- テキストボックスにpw:のラベル付け -->
 			 <input type="text" name="PW" id="pw" class="loginTextBox"><!-- 名前PWのテキストボックス作成 -->
 		 </p>
 		 

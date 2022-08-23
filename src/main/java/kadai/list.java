@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Login
@@ -41,86 +42,58 @@ public class list extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
 		// TODO Auto-generated method stub
 		
+	try {
 		//getParameterメソッド使用してデータ取得、取得した値をString型の変数に代入
-				String id = null;
-				id = request.getParameter("ID");
-				String que = null;
-				que = request.getParameter("QUESTION");
-				String ansId = null;
-				ansId = request.getParameter("ANSID");
-				String queId = null;
-				queId = request.getParameter("QUEID");
-				String ans = null;
-				ans = request.getParameter("ANSWER");
+		String id = request.getParameter("ID");
+		String question = request.getParameter("QUESTION");
+		String answerId = request.getParameter("ANSID");
+		String questionId = request.getParameter("QUEID");
+		String answer = request.getParameter("ANSWER");
 
-				
-				
-			//#QuestionsDao型のオブジェクト、「queDao」を用意
-			QuestionsDao queDao = null;//変数宣言
-			try {
-				queDao = new QuestionsDao();//オブジェクト作成
-			} catch (Exception e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();//例外発生時までに実行したメソッドの時系列一覧表示
-			}
-			
-			//#ArrayList(配列)としてQuestionsBean型のqueListを作り、そこにqueDaoオブジェクト(QuestionsDaoクラス)が持つfindAllメソッドを実行した戻り値を格納
-			ArrayList<QuestionsBean> queList = null;//findAllメソッド戻り値を配列として格納する変数queListの宣言
-				try {
-					queList = (ArrayList<QuestionsBean>) queDao.findAll();//queDaoオブジェクトがもつfindAllメソッドの戻り値を配列として格納
-				} catch (DAOException e1) {
-					// TODO 自動生成された catch ブロック
-					e1.printStackTrace();
-				}
-				// TODO 自動生成された catch ブロック
-			
-			//# 取得できたレコードのquestionsの件数をコンソールに出力して確認
-			System.out.println("取得したquestionsの件数は"+ queList.size() + "件です");
-			
-			//AnswersDao型のオブジェクト「ansDao」を用意
-			AnswersDao ansDao = null;//変数宣言
-			try {
-				ansDao = new AnswersDao();//オブジェクトの作成
-			} catch (Exception e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-			}
-			
-			//#ArrayList(配列)としてAnswersBean型のansListを作り、そこにansDaoオブジェクト(AnswersDaoクラス)が持つfindAllメソッドを実行した戻り値を格納
-				ArrayList<AnswersBean> ansList = null;//findAllメソッドの戻り値を配列として格納する変数ansListの宣言
-					try {
-						ansList = (ArrayList<AnswersBean>) ansDao.findAll();//ansDaoオブジェクトがもつfindAllメソッドの戻り値を配列として格納
-					} catch (DAOException e1) {
-						// TODO 自動生成された catch ブロック
-						e1.printStackTrace();
-					}
-					// TODO 自動生成された catch ブロック
-
-				//# 取得できたレコードのcorrect_answersの件数をコンソールに出力して確認
-				System.out.println("取得したanswerの件数は" + ansList.size() + "件です");
-					
-				
-				
-				request.setAttribute("queList",queList );//queDaoオブジェクトfindAllメソッドの戻り値の配列をsetAttribute
-				
-				request.setAttribute("ansList",ansList );//ansDaoオブジェクトfindAllメソッドの戻り値の配列をsetAttribute
-				
-				
-			
-				
-
-				RequestDispatcher dispatcher =  request.getRequestDispatcher("./list.jsp");//list.jspに遷移
-		        //フォワードの実行
-		        try {
-					dispatcher.forward(request, response);
-				} catch (ServletException e1) {
-					// TODO 自動生成された catch ブロック
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO 自動生成された catch ブロック
-					e1.printStackTrace();
-				}
+		// セッションを取得
+		HttpSession session = request.getSession();
+		System.out.println("ログインIDは" + session.getAttribute("loginId"));
+		// ログイン中でなかった場合
+		if (session.getAttribute("loginId") == null) {
+		  // ログイン画面に遷移
+		  RequestDispatcher dispacher = request.getRequestDispatcher("./login.jsp");
+		  dispacher.forward(request,response);
+		  return ;
+		}
 		
+		
+		QuestionsDao questionsDao = new QuestionsDao();
+		//#ArrayList(配列)としてQuestionsBean型のqueListを作り、そこにqueDaoオブジェクト(QuestionsDaoクラス)が持つfindAllメソッドを実行した戻り値を格納
+		ArrayList<QuestionsBean> questionsList = (ArrayList<QuestionsBean>) questionsDao.findAll();//queDaoオブジェクトがもつfindAllメソッドの戻り値を配列として格納
+			
+		//# 取得できたレコードのquestionsの件数をコンソールに出力して確認
+		System.out.println("取得したquestionsの件数は"+ questionsList.size() + "件です");
+		
+		//AnswersDao型のオブジェクト「ansDao」を用意
+		AnswersDao answersDao = new AnswersDao();//オブジェクトの作成
+			
+		//#ArrayList(配列)としてAnswersBean型のansListを作り、そこにansDaoオブジェクト(AnswersDaoクラス)が持つfindAllメソッドを実行した戻り値を格納
+		ArrayList<AnswersBean> answersList = (ArrayList<AnswersBean>) answersDao.findAll();//ansDaoオブジェクトがもつfindAllメソッドの戻り値を配列として格納
+				
+
+		//# 取得できたレコードのcorrect_answersの件数をコンソールに出力して確認
+		System.out.println("取得したanswerの件数は" + answersList.size() + "件です");
+
+		request.setAttribute("questionsList",questionsList );//queDaoオブジェクトfindAllメソッドの戻り値の配列をsetAttribute
+				
+		request.setAttribute("answersList",answersList );//ansDaoオブジェクトfindAllメソッドの戻り値の配列をsetAttribute
+				
+				
+		RequestDispatcher dispatcher =  request.getRequestDispatcher("./list.jsp");//list.jspに遷移
+		//フォワードの実行
+		dispatcher.forward(request, response);
+				
+				
+	} catch (Exception e1) {
+			// TODO 自動生成された catch ブロック
+			e1.printStackTrace();
+		}
+		// TODO 自動生成された catch ブロック
 	}
 }
 
