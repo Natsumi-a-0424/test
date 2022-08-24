@@ -1,3 +1,4 @@
+
 package kadai;
 
 import java.io.IOException;
@@ -55,3 +56,4 @@ public class logout extends HttpServlet {
 	}
 
 }
+

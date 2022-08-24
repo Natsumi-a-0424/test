@@ -8,6 +8,7 @@
 </head>
 
 <header>
+<<<<<<< HEAD
 	<div class="logo">STUDY SPACE</div>
 	  
 	  	<form action="./top.jsp">
